@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Users, Trophy, Rocket } from 'lucide-react';
 
-const Index = () => {
+const Home = () => {
   const stats = [
     { icon: Users, label: 'Team Members', value: '10' },
     { icon: Trophy, label: 'Competitions', value: '15+' },
@@ -135,4 +135,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;
