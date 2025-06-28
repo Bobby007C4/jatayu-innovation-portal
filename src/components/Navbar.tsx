@@ -45,7 +45,7 @@ const Navbar = () => {
             </div>
             <div className="transition-all duration-300 group-hover:translate-x-1">
               <h1 className="font-bold font-playfair text-jatayu-text-primary transition-colors duration-300 my-0 mx-0 px-0 py-0 text-2xl text-zinc-50 text-left">Team Jatayu</h1>
-              <p className="text-xs text-jatayu-text-muted -mt-1 group-hover:text-jatayu-text-secondary transition-colors duration-300">Innovation Takes Flight</p>
+              <p className="text-xs text-jatayu-text-muted -mt-1 group-hover:text-jatayu-text-secondary transition-colors duration-300"></p>
             </div>
           </Link>
 
