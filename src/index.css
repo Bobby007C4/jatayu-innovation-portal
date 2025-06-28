@@ -60,37 +60,215 @@
 
 @layer components {
   .nav-link {
-    @apply relative text-jatayu-text-secondary hover:text-jatayu-text-primary transition-colors duration-300;
+    @apply relative text-jatayu-text-secondary hover:text-jatayu-text-primary transition-all duration-500;
   }
 
   .nav-link::after {
-    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-jatayu-accent transition-all duration-300;
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-jatayu-accent transition-all duration-500 ease-out;
   }
 
   .nav-link:hover::after,
   .nav-link.active::after {
     @apply w-full;
+    animation: shimmer 1s ease-in-out;
   }
 
   .btn-primary {
-    @apply bg-jatayu-accent hover:bg-jatayu-accent-hover text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-jatayu-accent/25 hover:-translate-y-0.5;
+    @apply bg-jatayu-accent hover:bg-jatayu-accent-hover text-white px-8 py-3 rounded-lg font-medium transition-all duration-500 hover:shadow-2xl hover:shadow-jatayu-accent/40 hover:-translate-y-1 hover:scale-105;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] transition-transform duration-700;
+  }
+
+  .btn-primary:hover::before {
+    @apply translate-x-[100%];
   }
 
   .btn-secondary {
-    @apply border border-jatayu-accent text-jatayu-accent hover:bg-jatayu-accent hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300;
+    @apply border border-jatayu-accent text-jatayu-accent hover:bg-jatayu-accent hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-500 hover:shadow-lg hover:shadow-jatayu-accent/30 hover:-translate-y-0.5;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-jatayu-accent/10;
+    @apply transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl hover:shadow-jatayu-accent/20 hover:scale-105;
+  }
+
+  .card-hover:hover {
+    animation: float 3s ease-in-out infinite;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-jatayu-text-primary to-jatayu-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-jatayu-text-primary via-jatayu-accent to-jatayu-text-primary bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease-in-out infinite;
   }
 
   .section-padding {
     @apply py-20 lg:py-32;
   }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger-animation {
+    animation-delay: var(--stagger-delay, 0s);
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  .rotate-slow {
+    animation: rotate-360 20s linear infinite;
+  }
+
+  .bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  .slide-up {
+    animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .slide-in-left {
+    animation: slide-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .slide-in-right {
+    animation: slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .zoom-in {
+    animation: zoom-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid #3b82f6;
+    white-space: nowrap;
+    animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+}
+
+/* Enhanced Keyframes */
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes pulse-glow {
+  0% { 
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transform: scale(1);
+  }
+  100% { 
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes rotate-360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(50px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes slide-in-left {
+  from { 
+    opacity: 0; 
+    transform: translateX(-100px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+@keyframes slide-in-right {
+  from { 
+    opacity: 0; 
+    transform: translateX(100px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+@keyframes zoom-in {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #3b82f6; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  0% { opacity: 0; transform: translateX(100px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
 }
 
 /* Custom scrollbar */
